@@ -1,0 +1,24 @@
+{
+  "depends": "",
+  "description": "Bitrate",
+  "legacy_setup": {
+    "description": "",
+    "has_setup_translate": false,
+    "name": "",
+    "package_data": [],
+    "package_dir_value": "",
+    "packages": [],
+    "pkg": "",
+    "version": ""
+  },
+  "module_dir_name": "Bitrate",
+  "package_name": "enigma2-plugin-extensions-bitrate",
+  "plugin_group": "extensions",
+  "source_repo_branch": "python3",
+  "source_repo_name": "e2openplugin-Bitrate",
+  "source_repo_url": "https://github.com/E2OpenPlugins/e2openplugin-Bitrate.git",
+  "target_repo_branch": "main",
+  "target_repo_name": "Bitrate",
+  "target_repo_url": "git@github.com:oe-alliance-plugins/Bitrate.git",
+  "version": "1.0"
+}
