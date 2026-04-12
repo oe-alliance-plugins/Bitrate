@@ -32,7 +32,7 @@ class Bitrate:
 							demux = streamdata["demux"]
 						if 'adapter' in streamdata:
 							adapter = streamdata["adapter"]
-			except:
+			except Exception:
 				pass
 			info = service.info()
 			vpid = info.getInfo(iServiceInformation.sVideoPID)
@@ -91,7 +91,7 @@ class Bitrate:
 			try:
 				self.vmin, self.vmax, self.vavg, self.vcur = self.datalines[0].split(' ')
 				self.amin, self.amax, self.aavg, self.acur = self.datalines[1].split(' ')
-			except:
+			except Exception:
 				self.clearValues()
 			self.datalines = []
 			if self.refresh_func:

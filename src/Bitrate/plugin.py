@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from . import _
 from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
@@ -10,7 +9,7 @@ from enigma import getDesktop, ePoint, iPlayableService, eTimer
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigInteger, ConfigYesNo, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.ServiceEventTracker import ServiceEventTracker
-from Tools.Directories import pathExists, fileExists
+from Tools.Directories import fileExists
 from .bitrate import Bitrate
 
 config.plugins.bitrate = ConfigSubsection()
@@ -318,9 +317,9 @@ class BitrateViewerSetup(Screen, ConfigListScreen):
 			self.refreshPlugins()
 		if fileExists("/usr/lib/enigma2/python/Components/Converter/bitratecalc.so") and self.bitrate.show_in_menu.value == "infobar":
 			try:
-				from Components.Converter.bitratecalc import eBitrateCalculator
+				from Components.Converter.bitratecalc import eBitrateCalculator  # noqa F401
 				self.session.open(MessageBox, _("Using bitrate in the skins with this plugin is not compatible!"), MessageBox.TYPE_WARNING, timeout=5)
-			except:
+			except ImportError:
 				pass
 		if self.prev_background != self.bitrate.background.value or self.prev_z != self.bitrate.z.value:
 			self.session.open(MessageBox, _("GUI needs a restart to apply changes!"), MessageBox.TYPE_INFO, timeout=5)
