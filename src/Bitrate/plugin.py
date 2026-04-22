@@ -2,20 +2,21 @@ from . import _
 from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
+from Screens.Setup import Setup
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
 from Components.Label import Label
-from enigma import getDesktop, ePoint, iPlayableService, eTimer
-from Components.config import config, ConfigSubsection, ConfigSelection, ConfigInteger, ConfigYesNo, getConfigListEntry
-from Components.ConfigList import ConfigListScreen
+from enigma import ePoint, iPlayableService, eTimer
+from Components.config import config, ConfigSubsection, ConfigSelection, ConfigInteger, ConfigYesNo
 from Components.ServiceEventTracker import ServiceEventTracker
 from Tools.Directories import fileExists
+from skin import colors, parseColor
 from .bitrate import Bitrate
 
 config.plugins.bitrate = ConfigSubsection()
-config.plugins.bitrate.background = ConfigSelection([("#00000000", _("black")), ("#54111112", _("transparent") + " - " + _("black"))], default="#00000000")
-config.plugins.bitrate.x = ConfigInteger(default=300, limits=(0, 9999))
-config.plugins.bitrate.y = ConfigInteger(default=300, limits=(0, 9999))
+config.plugins.bitrate.background = ConfigSelection([("#00000000", _("black")), ("#54111112", _("semi-transparent black"))], default="#00000000")
+config.plugins.bitrate.x = ConfigInteger(default=300, limits=(0, 1920))
+config.plugins.bitrate.y = ConfigInteger(default=300, limits=(0, 1080))
 config.plugins.bitrate.force_restart = ConfigYesNo(default=True)
 config.plugins.bitrate.show_in_menu = ConfigSelection([("infobar", _("as infobar")), ("extmenu", _("extension menu"))], default="extmenu")
 config.plugins.bitrate.infobar_type_services = ConfigSelection([("all", _("all")), ("dvb", _("only DVB"))], default="all")
@@ -25,92 +26,56 @@ config.plugins.bitrate.z = ConfigSelection([(str(x), str(x)) for x in range(-20,
 infobarModeBitrateInstance = None
 bitrateviewer = None
 
-FULLHD = False
-if getDesktop(0).size().width() >= 1920:
-	FULLHD = True
-
 
 class BitrateViewerExtra(Screen):
-	skin_compact_fullhd = """
-		<screen position="200,40" size="300,90" zPosition="%s" flags="wfNoBorder" backgroundColor="%s" title="Bitrate viewer">
-			<widget render="Label" source="video_caption" position="10,10" zPosition="1" size="100,32" font="Regular;30" transparent="1"/>
-			<widget render="Label" source="audio_caption" position="10,50" zPosition="1" size="100,32" font="Regular;30" transparent="1"/>
-			<widget render="Label" source="video" position="105,10" zPosition="1" size="185,32" font="Regular;30" halign="right" transparent="1"/>
-			<widget render="Label" source="audio" position="105,50" zPosition="1" size="185,32" font="Regular;30" halign="right" transparent="1"/>
-		</screen>""" % (config.plugins.bitrate.z.value, config.plugins.bitrate.background.value)
-	skin_info_fullhd = """
-			<screen position="200,300" size="350,160" zPosition="%s" title="Bitrate viewer">
-				<eLabel position="5,10" size="80,22" text="video" font="Regular;20" />
-				<eLabel position="5,30" size="80,22" text="min" font="Regular;20" />
-				<widget name="vmin" position="5,50" size="80,22" font="Regular;20" />
-				<eLabel position="85,30" size="80,22" text="max" font="Regular;20" />
-				<widget name="vmax" position="85,50" size="80,22" font="Regular;20" />
-				<eLabel position="165,30" size="80,22" text="average" font="Regular;20" />
-				<widget name="vavg" position="165,50" size="80,22" font="Regular;20" />
-				<eLabel position="245,30" size="80,22" text="current" font="Regular;20" />
-				<widget name="vcur" position="245,50" size="80,22" font="Regular;20" />
-				<eLabel position="5,80" size="80,22" text="audio" font="Regular;20" />
-				<eLabel position="5,100" size="80,22" text="min" font="Regular;20" />
-				<widget name="amin" position="5,120" size="80,22" font="Regular;20" />
-				<eLabel position="85,100" size="80,22" text="max" font="Regular;20" />
-				<widget name="amax" position="85,120" size="80,22" font="Regular;20" />
-				<eLabel position="165,100" size="80,22" text="average" font="Regular;20" />
-				<widget name="aavg" position="165,120" size="80,22" font="Regular;20" />
-				<eLabel position="245,100" size="80,22" text="current" font="Regular;20" />
-				<widget name="acur" position="245,120" size="80,22" font="Regular;20" />
-			</screen>""" % (config.plugins.bitrate.z.value)
 	skin_compact = """
-			<screen position="200,40" size="200,60" zPosition="%s" backgroundColor="%s" flags="wfNoBorder" title="Bitrate viewer">
-				<widget render="Label" source="video_caption" position="10,10" zPosition="1" size="70,22" font="Regular;20" transparent="1"/>
-				<widget render="Label" source="audio_caption" position="10,35" zPosition="1" size="70,22" font="Regular;20" transparent="1"/>
-				<widget render="Label" source="video" position="85,10" zPosition="1" size="110,22" font="Regular;20" halign="right" transparent="1"/>
-				<widget render="Label" source="audio" position="85,35" zPosition="1" size="110,22" font="Regular;20" halign="right" transparent="1"/>
-			</screen>""" % (config.plugins.bitrate.z.value, config.plugins.bitrate.background.value)
+		<screen position="200,70" size="300,110" zPosition="%s" backgroundColor="bitrateBackgroundColor" resolution="1920,1080">
+			<widget render="Label" source="video_caption" position="10,22" zPosition="1" size="100,32" font="Regular;30" transparent="1"/>
+			<widget render="Label" source="audio_caption" position="10,62" zPosition="1" size="100,32" font="Regular;30" transparent="1"/>
+			<widget render="Label" source="video" position="105,22" zPosition="1" size="185,32" font="Regular;30" halign="right" transparent="1"/>
+			<widget render="Label" source="audio" position="105,62" zPosition="1" size="185,32" font="Regular;30" halign="right" transparent="1"/>
+		</screen>""" % (config.plugins.bitrate.z.value)
 	skin_info = """
-			<screen position="200,300" size="350,160" zPosition="%s" title="Bitrate viewer">
-				<eLabel position="5,10" size="80,20" text="video" font="Regular;16" />
-				<eLabel position="5,30" size="80,20" text="min" font="Regular;16" />
-				<widget name="vmin" position="5,50" size="80,20" font="Regular;16" />
-				<eLabel position="85,30" size="80,20" text="max" font="Regular;16" />
-				<widget name="vmax" position="85,50" size="80,20" font="Regular;16" />
-				<eLabel position="165,30" size="80,20" text="average" font="Regular;16" />
-				<widget name="vavg" position="165,50" size="80,20" font="Regular;16" />
-				<eLabel position="245,30" size="80,20" text="current" font="Regular;16" />
-				<widget name="vcur" position="245,50" size="80,20" font="Regular;16" />
-				<eLabel position="5,80" size="80,20" text="audio" font="Regular;16" />
-				<eLabel position="5,100" size="80,20" text="min" font="Regular;16" />
-				<widget name="amin" position="5,120" size="80,20" font="Regular;16" />
-				<eLabel position="85,100" size="80,20" text="max" font="Regular;16" />
-				<widget name="amax" position="85,120" size="80,20" font="Regular;16" />
-				<eLabel position="165,100" size="80,20" text="average" font="Regular;16" />
-				<widget name="aavg" position="165,120" size="80,20" font="Regular;16" />
-				<eLabel position="245,100" size="80,20" text="current" font="Regular;16" />
-				<widget name="acur" position="245,120" size="80,20" font="Regular;16" />
-			</screen>""" % (config.plugins.bitrate.z.value)
+		<screen position="200,300" size="350,160" zPosition="%s" resolution="1920,1080">
+			<eLabel position="5,10" size="200,24" text="video kbit/s" font="Regular;20" />
+			<eLabel position="5,30" size="80,24" text="min" font="Regular;20" />
+			<widget name="vmin" position="5,50" size="80,22" font="Regular;20" />
+			<eLabel position="85,30" size="80,24" text="max" font="Regular;20" />
+			<widget name="vmax" position="85,50" size="80,22" font="Regular;20" />
+			<eLabel position="165,30" size="80,24" text="average" font="Regular;20" />
+			<widget name="vavg" position="165,50" size="80,22" font="Regular;20" />
+			<eLabel position="245,30" size="80,24" text="current" font="Regular;20" />
+			<widget name="vcur" position="245,50" size="80,22" font="Regular;20" />
+			<eLabel position="5,80" size="200,24" text="audio kbit/s" font="Regular;20" />
+			<eLabel position="5,100" size="80,24" text="min" font="Regular;20" />
+			<widget name="amin" position="5,120" size="80,22" font="Regular;20" />
+			<eLabel position="85,100" size="80,24" text="max" font="Regular;20" />
+			<widget name="amax" position="85,120" size="80,22" font="Regular;20" />
+			<eLabel position="165,100" size="80,24" text="average" font="Regular;20" />
+			<widget name="aavg" position="165,120" size="80,22" font="Regular;20" />
+			<eLabel position="245,100" size="80,24" text="current" font="Regular;20" />
+			<widget name="acur" position="245,120" size="80,22" font="Regular;20" />
+		</screen>""" % (config.plugins.bitrate.z.value)
 
 	def __init__(self, session, infobar_mode=False):
-		if FULLHD:
-			if config.plugins.bitrate.style_skin.value == "compact":
-				self.skin = self.skin_compact_fullhd
-			else:
-				self.skin = self.skin_info_fullhd
+		self.injectColor("bitrateBackgroundColor", config.plugins.bitrate.background.value)
+		if config.plugins.bitrate.style_skin.value == "compact":
+			self.skin = self.skin_compact
 		else:
-			if config.plugins.bitrate.style_skin.value == "compact":
-				self.skin = self.skin_compact
-			else:
 				self.skin = self.skin_info
 		Screen.__init__(self, session)
 		self.infobar_mode = infobar_mode
 		self.style_skin = config.plugins.bitrate.style_skin.value
 		self.startDelayTimer = eTimer()
 		self.startDelayTimer.callback.append(self.bitrateAfrterDelayStart)
+		self.title = _("Bitrate viewer")
 		if config.plugins.bitrate.style_skin.value == "compact":
 			self["video_caption"] = StaticText(_("Video:"))
 			self["audio_caption"] = StaticText(_("Audio:"))
 			self["video"] = StaticText()
 			self["audio"] = StaticText()
+			self.skinName = ["BitrateViewerExtraCompact"]
 		else:
-			self.setTitle(_("Bitrate viewer"))
 			self["vmin"] = Label("")
 			self["vmax"] = Label("")
 			self["vavg"] = Label("")
@@ -119,15 +84,11 @@ class BitrateViewerExtra(Screen):
 			self["amax"] = Label("")
 			self["aavg"] = Label("")
 			self["acur"] = Label("")
+			self.skinName = ["BitrateViewerExtra"]
 		if not infobar_mode:
 			self["actions"] = ActionMap(["WizardActions"],
 			{
-				"back": self.keyCancel,
-				"ok": self.keyCancel,
-				"right": self.keyCancel,
-				"left": self.keyCancel,
-				"down": self.keyCancel,
-				"up": self.keyCancel,
+				x: self.keyCancel for x in ("back", "ok", "right", "left", "down", "up")
 			}, -1)
 		self.bitrate = Bitrate(session, self.refreshEvent, self.bitrateStopped)
 		self.onLayoutFinish.append(self.__layoutFinished)
@@ -182,138 +143,47 @@ class BitrateViewerExtra(Screen):
 			if self.shown:
 				self.hide()
 
+	@staticmethod
+	def injectColor(name, color):
+		colors[name] = parseColor(color)
 
-class BitrateViewerSetup(Screen, ConfigListScreen):
-	if not FULLHD:
-		skin = """
-			<screen position="center,center" size="640,310" title="Bitrate viewer setup" >
-				<widget name="config" position="10,45" size="620,255" />
-				<ePixmap pixmap="skin_default/buttons/green.png" position="440,0" zPosition="0" size="140,40" alphatest="on" />
-				<ePixmap pixmap="skin_default/buttons/red.png" position="60,0" zPosition="0" size="140,40" alphatest="on" />
-				<widget name="key_green" position="440,0" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="green" />
-				<widget name="key_red" position="60,0" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="red" />
-			</screen>"""
-	else:
-		skin = """
-			<screen position="center,center" size="1000,420" title="Bitrate viewer setup" >
-				<widget name="config" position="10,70" size="980,350" font="Regular;33" itemHeight="35" />
-				<ePixmap pixmap="skin_default/buttons/green.png" position="650,0" zPosition="0" size="250,40" alphatest="on" />
-				<ePixmap pixmap="skin_default/buttons/red.png" position="150,0" zPosition="0" size="250,40" alphatest="on" />
-				<widget name="key_green" position="630,0" size="250,40" valign="center" halign="center" zPosition="1" font="Regular;30" transparent="1" backgroundColor="green" />
-				<widget name="key_red" position="130,0" size="250,40" valign="center" halign="center" zPosition="1" font="Regular;30" transparent="1" backgroundColor="red" />
-			</screen>"""
 
+class BitrateViewerSetup(Setup):
 	def __init__(self, session):
-		self.skin = BitrateViewerSetup.skin
-		self.setup_title = _("Bitrate viewer setup")
-		Screen.__init__(self, session)
-		self["key_green"] = Label(_("Save/OK"))
-		self["key_red"] = Label(_("Cancel"))
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
-		{
-			"ok": self.keyOk,
-			"save": self.keyGreen,
-			"cancel": self.keyRed,
-		}, -1)
-		ConfigListScreen.__init__(self, [])
-		self.prev_show_in_menu = config.plugins.bitrate.show_in_menu.value
-		self.prev_force_restart = config.plugins.bitrate.force_restart.value
-		self.prev_background = config.plugins.bitrate.background.value
-		self.prev_style_skin = config.plugins.bitrate.style_skin.value
-		self.prev_z = config.plugins.bitrate.z.value
-		self.prev_x = config.plugins.bitrate.x.value
-		self.prev_y = config.plugins.bitrate.y.value
-		self.initConfig()
-		self.createSetup()
-		self.onClose.append(self.__closed)
-		self.onLayoutFinish.append(self.__layoutFinished)
-
-	def __closed(self):
-		pass
-
-	def getCurrentEntry(self):
-		if self["config"].getCurrent():
-			return self["config"].getCurrent()[0]
-		return ""
-
-	def getCurrentValue(self):
-		if self["config"].getCurrent() and len(self["config"].getCurrent()) > 0:
-			return str(self["config"].getCurrent()[1].getText())
-		return ""
-
-	def createSummary(self):
-		from Screens.Setup import SetupSummary
-		return SetupSummary
-
-	def __layoutFinished(self):
-		self.setTitle(self.setup_title)
-
-	def initConfig(self):
-		def getPrevValues(section):
-			res = {}
-			for (key, val) in section.content.items.items():
-				if isinstance(val, ConfigSubsection):
-					res[key] = getPrevValues(val)
-				else:
-					res[key] = val.value
-			return res
-
-		self.bitrate = config.plugins.bitrate
-		self.prev_values = getPrevValues(self.bitrate)
-		self.cfg_show_in_menu = getConfigListEntry(_("Mode"), self.bitrate.show_in_menu)
-		self.cfg_style_skin = getConfigListEntry(_("Style skin"), self.bitrate.style_skin)
-		self.cfg_infobar_type_services = getConfigListEntry(_("Start for type services"), self.bitrate.infobar_type_services)
-		self.cfg_force_restart = getConfigListEntry(_("Show 'restart bitrate' in extensions menu"), self.bitrate.force_restart)
-		self.cfg_background = getConfigListEntry(_("Background window"), self.bitrate.background)
-		self.cfg_x = getConfigListEntry(_("X screen position"), self.bitrate.x)
-		self.cfg_y = getConfigListEntry(_("Y screen position"), self.bitrate.y)
-		self.cfg_z = getConfigListEntry(_("Z screen position"), self.bitrate.z)
+		Setup.__init__(self, session, setup=None)
+		self.title = _("Bitrate viewer setup")
 
 	def createSetup(self):
-		list = [self.cfg_show_in_menu]
-		if self.bitrate.show_in_menu.value == "infobar":
-			list.append(self.cfg_infobar_type_services)
-			list.append(self.cfg_force_restart)
-		list.append(self.cfg_style_skin)
-		if self.bitrate.style_skin.value == "compact":
-			list.append(self.cfg_background)
-		list.append(self.cfg_x)
-		list.append(self.cfg_y)
-		list.append(self.cfg_z)
-		self["config"].list = list
-		self["config"].l.setList(list)
+		indent = "- "
+		config_list = [(_("Mode"), config.plugins.bitrate.show_in_menu)]
+		if config.plugins.bitrate.show_in_menu.value == "infobar":
+			config_list.append((indent + _("Start for type services"), config.plugins.bitrate.infobar_type_services))
+			config_list.append((indent + _("Show 'restart bitrate' in extensions menu"), config.plugins.bitrate.force_restart))
+		config_list.append((_("Style skin"), config.plugins.bitrate.style_skin))
+		if config.plugins.bitrate.style_skin.value == "compact":
+			config_list.append((indent + _("Background window") + " *", config.plugins.bitrate.background))
+		config_list.append((_("X screen position"), config.plugins.bitrate.x))
+		config_list.append((_("Y screen position"), config.plugins.bitrate.y))
+		config_list.append((_("Z screen position") + " *", config.plugins.bitrate.z))
+		self["config"].list = config_list
 
-	def keyOk(self):
-		self.keyGreen()
-
-	def keyRed(self):
-		def setPrevValues(section, values):
-			for (key, val) in section.content.items.items():
-				value = values.get(key, None)
-				if value is not None:
-					if isinstance(val, ConfigSubsection):
-						setPrevValues(val, value)
-					else:
-						val.value = value
-		setPrevValues(self.bitrate, self.prev_values)
-		self.keyGreen()
-
-	def keyGreen(self):
+	def keySave(self):
 		global bitrateviewer
-		self.bitrate.save()
-		if self.bitrate.show_in_menu.value == "infobar":
-			if self.prev_style_skin != config.plugins.bitrate.style_skin.value or self.prev_x != config.plugins.bitrate.x.value or self.prev_y != config.plugins.bitrate.y.value:
-				if bitrateviewer:
-					bitrateviewer.bitrateUpdateStop()
-					self.session.deleteDialog(bitrateviewer)
-					bitrateviewer = None
+		reset_layout_required = config.plugins.bitrate.style_skin.isChanged() or config.plugins.bitrate.x.isChanged() or config.plugins.bitrate.y.isChanged()
+		refresh_required = config.plugins.bitrate.show_in_menu.isChanged() or config.plugins.bitrate.force_restart.isChanged()
+		restart_required = self.saveAll()
+		if config.plugins.bitrate.show_in_menu.value == "infobar":
+			if reset_layout_required and bitrateviewer:
+				bitrateviewer.bitrateUpdateStop()
+				self.session.deleteDialog(bitrateviewer)
+				bitrateviewer = None
 			if not bitrateviewer and infobarModeBitrateInstance:
 				infobarModeBitrateInstance.resetService()
 		elif bitrateviewer:
 			bitrateviewer.bitrateUpdateStop()
 			self.session.deleteDialog(bitrateviewer)
 			bitrateviewer = None
-		if self.prev_show_in_menu != self.bitrate.show_in_menu.value or self.prev_force_restart != self.bitrate.force_restart.value:
+		if refresh_required:
 			self.refreshPlugins()
 		if fileExists("/usr/lib/enigma2/python/Components/Converter/bitratecalc.so") and self.bitrate.show_in_menu.value == "infobar":
 			try:
@@ -321,23 +191,17 @@ class BitrateViewerSetup(Screen, ConfigListScreen):
 				self.session.open(MessageBox, _("Using bitrate in the skins with this plugin is not compatible!"), MessageBox.TYPE_WARNING, timeout=5)
 			except ImportError:
 				pass
-		if self.prev_background != self.bitrate.background.value or self.prev_z != self.bitrate.z.value:
-			self.session.open(MessageBox, _("GUI needs a restart to apply changes!"), MessageBox.TYPE_INFO, timeout=5)
-		self.close()
+		if restart_required:
+			self.session.openWithCallback(self.restartConfirm, MessageBox, _("Restart GUI now to apply the changes?"), default=True, type=MessageBox.TYPE_YESNO)
+		else:
+			self.close()
 
-	def refreshPlugins(self):
+	@staticmethod
+	def refreshPlugins():
 		from Components.PluginComponent import plugins
 		from Tools.Directories import SCOPE_PLUGINS, resolveFilename
 		plugins.clearPluginList()
 		plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
-
-	def keyLeft(self):
-		ConfigListScreen.keyLeft(self)
-		self.createSetup()
-
-	def keyRight(self):
-		ConfigListScreen.keyRight(self)
-		self.createSetup()
 
 
 class infobarModeBitrate:
