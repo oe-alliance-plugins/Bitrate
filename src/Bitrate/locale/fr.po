@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-14 17:39+0200\n"
+"POT-Creation-Date: 2026-04-23 07:04+0200\n"
 "PO-Revision-Date: 2018-06-14 17:28+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,86 +14,108 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: ../plugin.py:122 ../plugin.py:123
 msgid " kbit/s"
 msgstr " kbit/s"
 
+#: ../plugin.py:74
 msgid "Audio:"
 msgstr "Audio:"
 
+#: ../plugin.py:164
 msgid "Background window"
 msgstr "Fenêtre d'arrière plan"
 
+#: ../plugin.py:313
 msgid "Bitrate setup"
 msgstr "Visualiseur du débit binaire configuration"
 
+#: ../plugin.py:71 ../plugin.py:316
 msgid "Bitrate viewer"
 msgstr "Visualiseur de débit binaire"
 
+#: ../plugin.py:154
 msgid "Bitrate viewer setup"
 msgstr "Configuration du visualiseur de débit binaire"
 
-msgid "Cancel"
-msgstr "Annuler"
-
-msgid "GUI needs a restart to apply changes!"
-msgstr "L’IGU doit être redémarré pour appliquer les changements!"
-
+#: ../plugin.py:158
 msgid "Mode"
 msgstr "Mode"
 
+#: ../plugin.py:195
+#, fuzzy
+msgid "Restart GUI now to apply the changes?"
+msgstr "L’IGU doit être redémarré pour appliquer les changements!"
+
+#: ../plugin.py:318
 msgid "Restart bitrate viewer"
 msgstr "Redémarrer le visualiseur de débit binaire"
 
-msgid "Save/OK"
-msgstr "Enregistrer/OK"
-
+#: ../plugin.py:161
 msgid "Show 'restart bitrate' in extensions menu"
 msgstr "Afficher ‘redémarrer le visualiseur de débit binaire’ dans le menu des extensions"
 
+#: ../plugin.py:312
 msgid "Show bitrate for live service"
 msgstr "Affiche le débit binaire des services en direct"
 
+#: ../plugin.py:160
 msgid "Start for type services"
 msgstr "Démarrer pour les types de services"
 
+#: ../plugin.py:162
 msgid "Style skin"
 msgstr "Style du thème/skin"
 
+#: ../plugin.py:191
 msgid "Using bitrate in the skins with this plugin is not compatible!"
 msgstr "Utiliser le débit binaire dans les thèmes/skins avec ce plugin n’est pas compatible!"
 
+#: ../plugin.py:73
 msgid "Video:"
 msgstr "Vidéo:"
 
+#: ../plugin.py:165
 msgid "X screen position"
 msgstr "Position de l’écran X"
 
+#: ../plugin.py:166
 msgid "Y screen position"
 msgstr "Position de l’écran Y"
 
+#: ../plugin.py:167
 msgid "Z screen position"
 msgstr "Position de l’écran Z"
 
+#: ../plugin.py:22
 msgid "all"
 msgstr "tous"
 
+#: ../plugin.py:21
 msgid "as infobar"
 msgstr "comme barre d’info"
 
+#: ../plugin.py:17
 msgid "black"
 msgstr "noir"
 
+#: ../plugin.py:23
 msgid "compact"
 msgstr "compacte"
 
+#: ../plugin.py:21
 msgid "extension menu"
 msgstr "menu des extensions"
 
+#: ../plugin.py:23
 msgid "full info"
 msgstr "info complète"
 
+#: ../plugin.py:22
 msgid "only DVB"
 msgstr "seulement DVB"
 
-msgid "transparent"
+#: ../plugin.py:17
+#, fuzzy
+msgid "semi-transparent black"
 msgstr "transparent"

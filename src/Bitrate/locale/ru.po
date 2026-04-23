@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bitrate\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-14 17:39+0200\n"
+"POT-Creation-Date: 2026-04-23 07:04+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Dimitrij <dima-73@inbox.lv>\n"
 "Language-Team: openPLi Dimitrij\n"
@@ -16,86 +16,108 @@ msgstr ""
 "X-Generator: Poedit 1.8.4\n"
 "X-Poedit-SearchPath-0: ../src\n"
 
+#: ../plugin.py:122 ../plugin.py:123
 msgid " kbit/s"
 msgstr " кб/с"
 
+#: ../plugin.py:74
 msgid "Audio:"
 msgstr "Аудио:"
 
+#: ../plugin.py:164
 msgid "Background window"
 msgstr "Фон окна"
 
+#: ../plugin.py:313
 msgid "Bitrate setup"
 msgstr "Настройки битрейта"
 
+#: ../plugin.py:71 ../plugin.py:316
 msgid "Bitrate viewer"
 msgstr "Просмотр битрейта"
 
+#: ../plugin.py:154
 msgid "Bitrate viewer setup"
 msgstr "Настройки просмотра битрейта"
 
-msgid "Cancel"
-msgstr "Отмена"
-
-msgid "GUI needs a restart to apply changes!"
-msgstr "Необходим рестарт GUI для применения изменений!"
-
+#: ../plugin.py:158
 msgid "Mode"
 msgstr "Режим"
 
+#: ../plugin.py:195
+#, fuzzy
+msgid "Restart GUI now to apply the changes?"
+msgstr "Необходим рестарт GUI для применения изменений!"
+
+#: ../plugin.py:318
 msgid "Restart bitrate viewer"
 msgstr "Рестарт просмотра битрейта"
 
-msgid "Save/OK"
-msgstr "Сохранить/ОК"
-
+#: ../plugin.py:161
 msgid "Show 'restart bitrate' in extensions menu"
 msgstr "Показать 'рестарт битрейта' в меню дополнений"
 
+#: ../plugin.py:312
 msgid "Show bitrate for live service"
 msgstr "Показать битрейт текущего сервиса"
 
+#: ../plugin.py:160
 msgid "Start for type services"
 msgstr "Старт для типа сервисов"
 
+#: ../plugin.py:162
 msgid "Style skin"
 msgstr "Стиль скина"
 
+#: ../plugin.py:191
 msgid "Using bitrate in the skins with this plugin is not compatible!"
 msgstr "Использование битрейта в скине с этим плагином  несовместимо!"
 
+#: ../plugin.py:73
 msgid "Video:"
 msgstr "Видео:"
 
+#: ../plugin.py:165
 msgid "X screen position"
 msgstr "X позиция окна"
 
+#: ../plugin.py:166
 msgid "Y screen position"
 msgstr "Y позиция окна"
 
+#: ../plugin.py:167
 msgid "Z screen position"
 msgstr "Z позиция окна"
 
+#: ../plugin.py:22
 msgid "all"
 msgstr "все"
 
+#: ../plugin.py:21
 msgid "as infobar"
 msgstr "как инфобар"
 
+#: ../plugin.py:17
 msgid "black"
 msgstr "черный"
 
+#: ../plugin.py:23
 msgid "compact"
 msgstr "компактный"
 
+#: ../plugin.py:21
 msgid "extension menu"
 msgstr "меню дополнений"
 
+#: ../plugin.py:23
 msgid "full info"
 msgstr "полная информация"
 
+#: ../plugin.py:22
 msgid "only DVB"
 msgstr "только DVB"
 
-msgid "transparent"
+#: ../plugin.py:17
+#, fuzzy
+msgid "semi-transparent black"
 msgstr "прозрачный"

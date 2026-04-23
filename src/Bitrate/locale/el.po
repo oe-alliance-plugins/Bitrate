@@ -7,97 +7,119 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-14 17:40+0200\n"
+"POT-Creation-Date: 2026-04-23 07:04+0200\n"
 "PO-Revision-Date: 2018-12-07 01:06+0200\n"
+"Last-Translator: MCelliot_g <mcelliot_g@hotmail.com>\n"
 "Language-Team: \n"
+"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.2\n"
-"Last-Translator: MCelliot_g <mcelliot_g@hotmail.com>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: el\n"
 
+#: ../plugin.py:122 ../plugin.py:123
 msgid " kbit/s"
 msgstr " kbit/s"
 
+#: ../plugin.py:74
 msgid "Audio:"
 msgstr "Ήχος:"
 
+#: ../plugin.py:164
 msgid "Background window"
 msgstr "Παράθυρο φόντου"
 
+#: ../plugin.py:313
 msgid "Bitrate setup"
 msgstr "Bitrate ρυθμίσεις"
 
+#: ../plugin.py:71 ../plugin.py:316
 msgid "Bitrate viewer"
 msgstr "Επισκόπηση bitrate"
 
+#: ../plugin.py:154
 msgid "Bitrate viewer setup"
 msgstr "Ρυθμίσεις επισκόπησης bitrate"
 
-msgid "Cancel"
-msgstr "Ακύρωση"
-
-msgid "GUI needs a restart to apply changes!"
-msgstr "Πρέπει να γίνει επανεκκίνηση της επιφάνειας χρήστη για να εφαρμοστούν οι αλλαγές!"
-
+#: ../plugin.py:158
 msgid "Mode"
 msgstr "Λειτουργία"
 
+#: ../plugin.py:195
+#, fuzzy
+msgid "Restart GUI now to apply the changes?"
+msgstr "Πρέπει να γίνει επανεκκίνηση της επιφάνειας χρήστη για να εφαρμοστούν οι αλλαγές!"
+
+#: ../plugin.py:318
 msgid "Restart bitrate viewer"
 msgstr "Επανεκκίνηση επισκόπησης bitrate"
 
-msgid "Save/OK"
-msgstr "Αποθήκευση/OK"
-
+#: ../plugin.py:161
 msgid "Show 'restart bitrate' in extensions menu"
 msgstr "Εμφάνιση 'επανεκκίνηση bitrate' στο μενού επεκτάσεων"
 
+#: ../plugin.py:312
 msgid "Show bitrate for live service"
 msgstr "Εμφάνιση ρυθμού bit για την τρέχουσα υπηρεσία"
 
+#: ../plugin.py:160
 msgid "Start for type services"
 msgstr "Εκκίνηση για τύπο υπηρεσιών"
 
+#: ../plugin.py:162
 msgid "Style skin"
 msgstr "Στυλ θέματος"
 
+#: ../plugin.py:191
 msgid "Using bitrate in the skins with this plugin is not compatible!"
 msgstr "Η χρήση του ρυθμού bit στα θέματα με αυτό το πρόσθετο δεν είναι συμβατή!"
 
+#: ../plugin.py:73
 msgid "Video:"
 msgstr "Βίντεο:"
 
+#: ../plugin.py:165
 msgid "X screen position"
 msgstr "Χ θέση οθόνης"
 
+#: ../plugin.py:166
 msgid "Y screen position"
 msgstr "Y θέση οθόνης"
 
+#: ../plugin.py:167
 msgid "Z screen position"
 msgstr "Z θέση οθόνης"
 
+#: ../plugin.py:22
 msgid "all"
 msgstr "όλα"
 
+#: ../plugin.py:21
 msgid "as infobar"
 msgstr "ως μπάρα πληροφοριών"
 
+#: ../plugin.py:17
 msgid "black"
 msgstr "μαύρο"
 
+#: ../plugin.py:23
 msgid "compact"
 msgstr "συμπτυγμένο"
 
+#: ../plugin.py:21
 msgid "extension menu"
 msgstr "μενού επεκτάσεων"
 
+#: ../plugin.py:23
 msgid "full info"
 msgstr "όλες οι πληροφορίες"
 
+#: ../plugin.py:22
 msgid "only DVB"
 msgstr "μόνο DVB"
 
-msgid "transparent"
+#: ../plugin.py:17
+#, fuzzy
+msgid "semi-transparent black"
 msgstr "διάφανο"

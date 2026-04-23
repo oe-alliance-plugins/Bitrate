@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bitrate\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-23 06:42+0300\n"
+"POT-Creation-Date: 2026-04-23 07:04+0200\n"
 "PO-Revision-Date: 2026-04-23 06:49+0300\n"
 "Last-Translator: Orlandox <http://www.huoltovalikko.com/>\n"
 "Language-Team: Tomppaa, Orlandox\n"
@@ -13,104 +13,106 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.9\n"
 
+#: ../plugin.py:122 ../plugin.py:123
 msgid " kbit/s"
 msgstr " kbit/s"
 
+#: ../plugin.py:74
 msgid "Audio:"
 msgstr "Audio:"
 
-msgid "audio"
-msgstr "audio"
-
-msgid "video"
-msgstr "video"
-
+#: ../plugin.py:164
 msgid "Background window"
 msgstr "Taustaikkuna"
 
+#: ../plugin.py:313
 msgid "Bitrate setup"
 msgstr "Bittinopeuden asetukset"
 
+#: ../plugin.py:71 ../plugin.py:316
 msgid "Bitrate viewer"
 msgstr "Bittinopeus"
 
+#: ../plugin.py:154
 msgid "Bitrate viewer setup"
 msgstr "Bittinopeuden asetukset"
 
-msgid "black"
-msgstr "musta"
-
-msgid "Cancel"
-msgstr "Peruuta"
-
-msgid "Restart GUI now to apply the changes?"
-msgstr "Käynnistetäänkö käyttöliittymä uudelleen nyt muutosten käyttöönottamiseksi?"
-
+#: ../plugin.py:158
 msgid "Mode"
 msgstr "Toimintatila"
 
+#: ../plugin.py:195
+msgid "Restart GUI now to apply the changes?"
+msgstr "Käynnistetäänkö käyttöliittymä uudelleen nyt muutosten käyttöönottamiseksi?"
+
+#: ../plugin.py:318
 msgid "Restart bitrate viewer"
 msgstr "Käynnistä bittinopeus uudelleen"
 
-msgid "Save/OK"
-msgstr "Tallenna/OK"
-
-msgid "semi-transparent black"
-msgstr "puoliläpinäkyvä musta"
-
+#: ../plugin.py:161
 msgid "Show 'restart bitrate' in extensions menu"
 msgstr "Näytä 'käynnistä bittinopeus uudelleen' laajennusvalikossa"
 
+#: ../plugin.py:312
 msgid "Show bitrate for live service"
 msgstr "Näytä bittinopeus live-kanavalla"
 
+#: ../plugin.py:160
 msgid "Start for type services"
 msgstr "Aloita tyyppipalveluista"
 
+#: ../plugin.py:162
 msgid "Style skin"
 msgstr "Teeman tyyli"
 
+#: ../plugin.py:191
 msgid "Using bitrate in the skins with this plugin is not compatible!"
 msgstr "Bittinopeuden käyttö teemoissa tämän pluginin kanssa ei ole yhteensopivaa!"
 
+#: ../plugin.py:73
 msgid "Video:"
 msgstr "Video:"
 
+#: ../plugin.py:165
 msgid "X screen position"
 msgstr "X-sijainti näytöllä"
 
+#: ../plugin.py:166
 msgid "Y screen position"
 msgstr "Y-sijainti näytöllä"
 
+#: ../plugin.py:167
 msgid "Z screen position"
 msgstr "Z-sijainti näytöllä"
 
+#: ../plugin.py:22
 msgid "all"
 msgstr "kaikki"
 
+#: ../plugin.py:21
 msgid "as infobar"
 msgstr "tietopalkkina"
 
+#: ../plugin.py:17
+msgid "black"
+msgstr "musta"
+
+#: ../plugin.py:23
 msgid "compact"
 msgstr "kompakti"
 
+#: ../plugin.py:21
 msgid "extension menu"
 msgstr "laajennusvalikossa"
 
+#: ../plugin.py:23
 msgid "full info"
 msgstr "täydet tiedot"
 
+#: ../plugin.py:22
 msgid "only DVB"
 msgstr "vain DVB"
 
-msgid "min"
-msgstr "minimi"
-
-msgid "max"
-msgstr "maksimi"
-
-msgid "average"
-msgstr "keskiarvo"
-
-msgid "current"
-msgstr "nykyinen"
+#: ../plugin.py:17
+msgid "semi-transparent black"
+msgstr "puoliläpinäkyvä musta"

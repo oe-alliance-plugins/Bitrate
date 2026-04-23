@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bitrate\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-14 17:39+0200\n"
+"POT-Creation-Date: 2026-04-23 07:04+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Vytenis P. <vyteniui@gmail.com>\n"
 "Language-Team: Vytenis P. vyteniui@gmail.com\n"
@@ -17,86 +17,108 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SearchPath-0: ../src\n"
 
+#: ../plugin.py:122 ../plugin.py:123
 msgid " kbit/s"
 msgstr " kbit/s"
 
+#: ../plugin.py:74
 msgid "Audio:"
 msgstr "Garsas:"
 
+#: ../plugin.py:164
 msgid "Background window"
 msgstr "Lango fonas"
 
+#: ../plugin.py:313
 msgid "Bitrate setup"
 msgstr "Įskiepio sąranka"
 
+#: ../plugin.py:71 ../plugin.py:316
 msgid "Bitrate viewer"
 msgstr "Bitų dažnio peržiūra"
 
+#: ../plugin.py:154
 msgid "Bitrate viewer setup"
 msgstr "Bitų dažnio peržiūros sąranka"
 
-msgid "Cancel"
-msgstr "Atšaukti"
-
-msgid "GUI needs a restart to apply changes!"
-msgstr "Kad pakeitimai įsigaliotų, grafinę aplinką reikia paleisti iš naujo!"
-
+#: ../plugin.py:158
 msgid "Mode"
 msgstr "Režimas"
 
+#: ../plugin.py:195
+#, fuzzy
+msgid "Restart GUI now to apply the changes?"
+msgstr "Kad pakeitimai įsigaliotų, grafinę aplinką reikia paleisti iš naujo!"
+
+#: ../plugin.py:318
 msgid "Restart bitrate viewer"
 msgstr "Bitų dažnio peržiūrą paleisti iš naujo"
 
-msgid "Save/OK"
-msgstr "Įrašyti/ОК"
-
+#: ../plugin.py:161
 msgid "Show 'restart bitrate' in extensions menu"
 msgstr "Rodyti 'įkelti bitų dažnį iš naujo' plėtinių meniu"
 
+#: ../plugin.py:312
 msgid "Show bitrate for live service"
 msgstr "Rodyti esamo kanalo bitų dažnį"
 
+#: ../plugin.py:160
 msgid "Start for type services"
 msgstr "Atverti kanalų tipams"
 
+#: ../plugin.py:162
 msgid "Style skin"
 msgstr "Aplinkos temos stilius"
 
+#: ../plugin.py:191
 msgid "Using bitrate in the skins with this plugin is not compatible!"
 msgstr "Šis įskiepis nesuderinamas su bitų dažnio rodymo įrankiais aplinkos temoje!"
 
+#: ../plugin.py:73
 msgid "Video:"
 msgstr "Vaizdas:"
 
+#: ../plugin.py:165
 msgid "X screen position"
 msgstr "X ekrano pozicija"
 
+#: ../plugin.py:166
 msgid "Y screen position"
 msgstr "Y ekrano pozicija"
 
+#: ../plugin.py:167
 msgid "Z screen position"
 msgstr "Z ekrano pozicija"
 
+#: ../plugin.py:22
 msgid "all"
 msgstr "viską"
 
+#: ../plugin.py:21
 msgid "as infobar"
 msgstr "kaip infojuosta"
 
+#: ../plugin.py:17
 msgid "black"
 msgstr "juodas"
 
+#: ../plugin.py:23
 msgid "compact"
 msgstr "kompaktiškas"
 
+#: ../plugin.py:21
 msgid "extension menu"
 msgstr "plėtinių meniu"
 
+#: ../plugin.py:23
 msgid "full info"
 msgstr "visa informacija"
 
+#: ../plugin.py:22
 msgid "only DVB"
 msgstr "tik DVB"
 
-msgid "transparent"
+#: ../plugin.py:17
+#, fuzzy
+msgid "semi-transparent black"
 msgstr "skaidrus"
