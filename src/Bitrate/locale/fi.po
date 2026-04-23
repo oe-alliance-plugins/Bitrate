@@ -1,116 +1,116 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: plugins 0.0.1\n"
+"Project-Id-Version: Bitrate\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-06-04 14:30+0300\n"
-"Last-Translator: tomppaa <http://www.huoltovalikko.com/>\n"
-"Language-Team: none\n"
+"POT-Creation-Date: 2026-04-23 06:42+0300\n"
+"PO-Revision-Date: 2026-04-23 06:49+0300\n"
+"Last-Translator: Orlandox <http://www.huoltovalikko.com/>\n"
+"Language-Team: Tomppaa, Orlandox\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.3\n"
-"POT-Creation-Date: \n"
+"X-Generator: Poedit 3.9\n"
 
 msgid " kbit/s"
 msgstr " kbit/s"
 
 msgid "Audio:"
-msgstr "Ääni:"
+msgstr "Audio:"
 
 msgid "audio"
-msgstr "ääni"
+msgstr "audio"
 
 msgid "video"
-msgstr "kuva"
+msgstr "video"
 
 msgid "Background window"
-msgstr "Tausta ikkuna"
+msgstr "Taustaikkuna"
 
 msgid "Bitrate setup"
-msgstr "Bittinopeus Asetukset"
+msgstr "Bittinopeuden asetukset"
 
 msgid "Bitrate viewer"
 msgstr "Bittinopeus"
 
 msgid "Bitrate viewer setup"
-msgstr "Bittinopeus asetukset"
+msgstr "Bittinopeuden asetukset"
+
+msgid "black"
+msgstr "musta"
 
 msgid "Cancel"
 msgstr "Peruuta"
 
-msgid "GUI needs a restart to apply changes!"
-msgstr "Käyttöjärjestelmä tarvitsee uudelleen käynnistyksen muutosten tekemiseen jälkeen!"
+msgid "Restart GUI now to apply the changes?"
+msgstr "Käynnistetäänkö käyttöliittymä uudelleen nyt muutosten käyttöönottamiseksi?"
 
 msgid "Mode"
-msgstr "Tila"
+msgstr "Toimintatila"
 
 msgid "Restart bitrate viewer"
-msgstr "Käynnistä bittinopeuden katseluohjelma uudelleen"
+msgstr "Käynnistä bittinopeus uudelleen"
 
 msgid "Save/OK"
 msgstr "Tallenna/OK"
 
+msgid "semi-transparent black"
+msgstr "puoliläpinäkyvä musta"
+
 msgid "Show 'restart bitrate' in extensions menu"
-msgstr "Näytä 'käynnistä bittinopeus' laajennusvalikossa"
+msgstr "Näytä 'käynnistä bittinopeus uudelleen' laajennusvalikossa"
 
 msgid "Show bitrate for live service"
-msgstr "Näytä bittinopeus kanavilla"
+msgstr "Näytä bittinopeus live-kanavalla"
 
 msgid "Start for type services"
-msgstr "Alkaen tyyppiset palvelut"
+msgstr "Aloita tyyppipalveluista"
 
 msgid "Style skin"
-msgstr "Ikkunan tyyli"
+msgstr "Teeman tyyli"
 
 msgid "Using bitrate in the skins with this plugin is not compatible!"
-msgstr "Bittinopeuden teeman käyttäminen tämän laajennuksen kanssa ei ole yhteensopiva!"
+msgstr "Bittinopeuden käyttö teemoissa tämän pluginin kanssa ei ole yhteensopivaa!"
 
 msgid "Video:"
-msgstr "Kuva:"
+msgstr "Video:"
 
 msgid "X screen position"
-msgstr "Näytön sijainti X"
+msgstr "X-sijainti näytöllä"
 
 msgid "Y screen position"
-msgstr "Näytön sijainti Y"
+msgstr "Y-sijainti näytöllä"
 
 msgid "Z screen position"
-msgstr "Näytön sijainti Z"
+msgstr "Z-sijainti näytöllä"
 
 msgid "all"
 msgstr "kaikki"
 
 msgid "as infobar"
-msgstr "kuten tietopalkki"
-
-msgid "black"
-msgstr "musta"
+msgstr "tietopalkkina"
 
 msgid "compact"
 msgstr "kompakti"
 
 msgid "extension menu"
-msgstr "laajennusvalikko"
+msgstr "laajennusvalikossa"
 
 msgid "full info"
 msgstr "täydet tiedot"
 
 msgid "only DVB"
-msgstr "ainoastaan DVB"
-
-msgid "transparent"
-msgstr "läpinäkyvä"
+msgstr "vain DVB"
 
 msgid "min"
-msgstr "pienin"
+msgstr "minimi"
 
 msgid "max"
-msgstr "suurin"
+msgstr "maksimi"
 
 msgid "average"
-msgstr "keskiverto"
+msgstr "keskiarvo"
 
 msgid "current"
 msgstr "nykyinen"
